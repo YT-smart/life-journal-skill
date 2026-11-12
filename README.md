@@ -13,7 +13,7 @@
 - **照片球全景**：所有照片环绕在你四周，拖动环顾，滚轮拉远看整颗球；左侧按年份跳转。
 - **螺旋塔近景**：按时间排成一座螺旋塔，滚动翻看每一年。
 - **翻到背面**：点开照片看那天写下的话、日期和地点，像翻一张老相片。
-- **解答之书**：在心里默念一个问题，翻开它，答案会从你的回忆里出现。带真实的翻书声。
+- **答案之书**：在心里默念一个问题，翻开它，答案会从你的回忆里出现。带真实的翻书声。
 - **两种主题**：回忆（柔和的电影感光影）/ 夜色（五彩斑斓的黑，有流星）。切换时有圆形过渡动画。
 - **iOS 玻璃质感界面**，“向右滑动 · 启程”的纸飞机开场，可以放背景音乐。
 
@@ -21,7 +21,7 @@
 |---|---|
 | ![全景](docs/screenshots/panorama.jpg) | ![近景螺旋塔 · 夜色](docs/screenshots/helix.jpg) |
 | ![照片正面](docs/screenshots/photo.jpg) | ![照片背面](docs/screenshots/photo-back.jpg) |
-| ![解答之书](docs/screenshots/book.jpg) | ![首页 · 夜色](docs/screenshots/home-night.jpg) |
+| ![答案之书](docs/screenshots/book.jpg) | ![首页 · 夜色](docs/screenshots/home-night.jpg) |
 
 ## 素材从哪来
 

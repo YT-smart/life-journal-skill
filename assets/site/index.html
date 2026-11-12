@@ -644,7 +644,7 @@ img{-webkit-user-drag:none}
       <div class="modes" id="modes"><i class="thumb"></i>
         <button data-mode="pano" class="on">全景</button>
         <button data-mode="helix">近景</button>
-        <button data-mode="book">解答之书</button>
+        <button data-mode="book">答案之书</button>
       </div>
       <button class="chip" id="btnTheme"></button>
       
@@ -660,7 +660,7 @@ img{-webkit-user-drag:none}
 <section id="book" class="hidden">
   <div class="bk-glow"></div>
   <div class="dust" id="bkDust"></div>
-  <div class="bk-head"><h2>解答之书</h2><p id="bkSub">在心里默念一个问题，然后翻开它</p></div>
+  <div class="bk-head"><h2>答案之书</h2><p id="bkSub">在心里默念一个问题，然后翻开它</p></div>
   <div class="bk-stage" id="bkStage"><div class="bk" id="bk">
     <div class="board leather"></div>
     <div class="pgs l paper lp" id="pgLeft"><div class="pframe"></div></div>
@@ -673,7 +673,7 @@ img{-webkit-user-drag:none}
   </div></div>
   <button class="chip bk-x" id="bkClose" title="合上书" aria-label="合上书"><svg class="ic"><use href="#i-x"/></svg></button>
   <div class="bk-ask">
-    <div class="bk-field"><input id="bkQ" maxlength="40" placeholder="写下你想问的事，或只在心里默念" autocomplete="off"><button class="bk-send" id="bkGo" title="翻开解答之书" aria-label="翻开解答之书"><svg class="ic"><use href="#i-quill"/></svg></button></div>
+    <div class="bk-field"><input id="bkQ" maxlength="40" placeholder="写下你想问的事，或只在心里默念" autocomplete="off"><button class="bk-send" id="bkGo" title="翻开答案之书" aria-label="翻开答案之书"><svg class="ic"><use href="#i-quill"/></svg></button></div>
     <p class="bk-tip" id="bkTip">点一下书，或按回车翻开</p>
   </div>
 </section>
@@ -1830,7 +1830,7 @@ let bkBusy = false, bkOpened = false, leaves = [], pageNo = 1, flipAC = null, fl
       <g fill="none" stroke="url(#g2)" stroke-width="1"><circle cx="50" cy="50" r="36"/><circle cx="50" cy="50" r="31" stroke-dasharray="1.5 2.5"/>${rays}
       <path d="M58 32 A 19 19 0 1 0 58 68 A 15 15 0 1 1 58 32 Z" fill="url(#g2)" stroke="none" opacity=".95"/>${stars}
       <path d="M62 44 l1.6 4.4 4.4 1.6 -4.4 1.6 -1.6 4.4 -1.6 -4.4 -4.4 -1.6 4.4 -1.6z" fill="url(#g2)" stroke="none"/></g></svg>
-    <b class="foil">解答之书</b><small>问 问 过 去 的 自 己</small>`;
+    <b class="foil">答案之书</b><small>问 问 过 去 的 自 己</small>`;
 })();
 // floating golden dust in the candlelight
 (function(){ const d = $('#bkDust'); let h = '';
@@ -1887,7 +1887,7 @@ async function closeBook(){
 }
 $('#bkClose').onclick = closeBook;
 function setAsk(again){
-  const t = again ? '再问一次' : '翻开解答之书', g = $('#bkGo'); g.title = t; g.setAttribute('aria-label', t);
+  const t = again ? '再问一次' : '翻开答案之书', g = $('#bkGo'); g.title = t; g.setAttribute('aria-label', t);
   $('#bkTip').textContent = again ? '写下新的问题，或再点一下书' : '点一下书，或按回车翻开';
 }
 bkStage.addEventListener('click', () => { if(!bkBusy) $('#bkGo').click(); });
