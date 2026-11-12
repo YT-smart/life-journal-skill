@@ -1,1 +1,25 @@
-{"tracks": []}
+{
+ "tracks": [
+  {
+   "file": "track-01.m4a"
+  },
+  {
+   "file": "track-02.mp3"
+  },
+  {
+   "file": "track-03.mp3"
+  },
+  {
+   "file": "track-04.mp3"
+  },
+  {
+   "file": "track-05.mp3"
+  },
+  {
+   "file": "track-06.mp3"
+  },
+  {
+   "file": "track-07.mp3"
+  }
+ ]
+}
