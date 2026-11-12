@@ -38,30 +38,17 @@
 
 ## 快速开始
 
-### 交给 AI（推荐）
+把下面这句话发给你的 AI（Claude Code、豆包等能装技能的 Agent 都行）：
 
-1. 把整个文件夹放进你的 Agent 技能目录，例如 Claude Code：`~/.claude/skills/life-journal/`。
-2. 对 AI 说：“把我 QQ 空间的照片做成时光手帐”，或者“用 ~/Pictures/旅行 里的照片做个回忆网页”。
-3. 按提示扫码或给出文件夹，AI 会导入、检查，然后在浏览器里打开网页。
+> 安装这个技能 https://github.com/YT-smart/life-journal-skill ，然后用我 QQ 空间的照片帮我做一个时光手帐
 
-### 不用 AI，先看示例
+照片在别处，就换成你的说法，比如：
 
-需要 Python 3（只用标准库）和一个支持 WebGL 的现代浏览器。
+- “……用我微博里的照片做一个时光手帐”
+- “……用电脑里「旅行」文件夹的照片做一个回忆网页”
+- “……先用示例照片给我看看效果”
 
-```bash
-python3 scripts/new_project.py --dir ~/时光手帐-示例 --demo
-python3 scripts/serve.py --project ~/时光手帐-示例
-```
-
-导入自己的照片：
-
-```bash
-python3 scripts/new_project.py --dir ~/时光手帐
-python3 scripts/import_photos.py --from ~/Pictures/旅行 --root ~/时光手帐/memories
-python3 scripts/serve.py --project ~/时光手帐
-```
-
-网页需要联网，从 CDN 加载 three.js、gsap 和字体；照片和音乐都在你自己的电脑上。
+剩下的交给 AI：需要扫码时它会把二维码发给你，做好后直接在浏览器里打开网页。
 
 ## 发布与分享
 
@@ -100,11 +87,6 @@ index.html            在线演示入口（GitHub Pages）
 - 只读你**自己的**内容；扫码登录在你的手机上确认，脚本拿不到也不需要密码，登录凭证只在内存里，结束即失效。
 - 不发帖、不评论、不删除，也不改云端文件。
 - 照片只保存在你的电脑上。只有你明确同意并确认范围后，才会发布；发布用的是去掉定位信息的分享副本。
-
-## 致谢
-
-- 示例照片来自 [Unsplash](https://unsplash.com)（经 [picsum.photos](https://picsum.photos)），摄影师名单见 [examples/demo/CREDITS.md](examples/demo/CREDITS.md)。
-- 3D 渲染：[three.js](https://threejs.org)；动画：[GSAP](https://gsap.com)。
 
 ## 开源协议
 
