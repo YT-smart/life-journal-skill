@@ -1,0 +1,856 @@
+{
+ "format": "life-journal/memories",
+ "version": 1,
+ "demo": true,
+ "note": "示例数据：照片来自 Unsplash（经 picsum.photos），文案均为虚构",
+ "memories": [
+  {
+   "id": "demo:22",
+   "source": "photos",
+   "date": "2016-06-18",
+   "time": null,
+   "title": "最后一次走这条走廊",
+   "text": "毕业典礼散场后，大家都去拍合照了。我一个人从主楼走廊的这头走到那头，脚步声特别响。四年，就这么走完了。",
+   "place": "学校 · 主楼",
+   "tags": [
+    "毕业",
+    "校园"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/022.jpg",
+     "width": 900,
+     "height": 1200
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:12",
+   "source": "photos",
+   "date": "2016-07-03",
+   "time": null,
+   "title": "第一次看见海",
+   "text": "毕业旅行。火车坐了十一个小时，下车直奔海边。海比想象中灰一点，但风是咸的，真好。",
+   "place": "青岛 · 石老人",
+   "tags": [
+    "旅行",
+    "海"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/012.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:2",
+   "source": "photos",
+   "date": "2016-09-12",
+   "time": null,
+   "title": "工位靠窗",
+   "text": "入职第一天。电脑是新的，工牌是新的，连我自己好像也是新的。窗外能看到一小块天。",
+   "place": "北京 · 望京",
+   "tags": [
+    "工作",
+    "第一次"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/002.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:30",
+   "source": "photos",
+   "date": "2016-12-24",
+   "time": null,
+   "title": "平安夜的热可可",
+   "text": "加班到十点，隔壁组的同事递过来一杯热可可，说\"圣诞快乐\"。那一刻忽然不觉得北京冷了。",
+   "place": "北京",
+   "tags": [
+    "冬天",
+    "同事"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/030.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:25",
+   "source": "photos",
+   "date": "2017-03-08",
+   "time": null,
+   "title": "樱花开了",
+   "text": "楼下那棵树原来是樱花。住了半年才知道，蹲在那儿拍了二十分钟，被保安大叔笑了。",
+   "place": "小区楼下",
+   "tags": [
+    "春天"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/025.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:64",
+   "source": "photos",
+   "date": "2017-05-20",
+   "time": null,
+   "title": "她说这个角度最好看",
+   "text": "陪她去看展。展没怎么看懂，她倒是让我拍了一百多张。",
+   "place": "798 艺术区",
+   "tags": [
+    "朋友",
+    "夏天"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/064.jpg",
+     "width": 900,
+     "height": 1200
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:47",
+   "source": "photos",
+   "date": "2017-08-15",
+   "time": null,
+   "title": "风很大的栈桥",
+   "text": "周末临时起意去了北戴河。栈桥上的风把帽子吹走了，我追了半天，最后它还是掉进了海里。",
+   "place": "北戴河 · 栈桥",
+   "tags": [
+    "旅行",
+    "海"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/047.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:96",
+   "source": "photos",
+   "date": "2017-11-11",
+   "time": null,
+   "title": "什么都没买",
+   "text": "双十一，购物车清空了又加满，最后什么都没买。打了一整晚游戏，赢了三把。",
+   "place": "出租屋",
+   "tags": [
+    "宅"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/096.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:29",
+   "source": "photos",
+   "date": "2018-01-27",
+   "time": null,
+   "title": "摔了十几次",
+   "text": "第一次滑雪。教练说我平衡感很好，然后我在初级道上摔了十几次。山顶的风景是真的好看。",
+   "place": "崇礼 · 雪场",
+   "tags": [
+    "冬天",
+    "运动"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/029.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:42",
+   "source": "photos",
+   "date": "2018-04-21",
+   "time": null,
+   "title": "靠窗第二个位置",
+   "text": "这家店的拿铁不算最好喝，但老板记得我不要糖。后来它关门了，我才发现没给它拍过照——除了这张。",
+   "place": "常去的咖啡店",
+   "tags": [
+    "日常"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/042.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:57",
+   "source": "photos",
+   "date": "2018-07-09",
+   "time": null,
+   "title": "在陌生的街头迷路",
+   "text": "出差的最后一天，故意不开导航随便走。迷路了两个小时，吃到一家很好吃的云吞面。",
+   "place": "香港 · 上环",
+   "tags": [
+    "出差",
+    "城市"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/057.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:49",
+   "source": "photos",
+   "date": "2018-10-02",
+   "time": null,
+   "title": "攒了一年的假",
+   "text": "终于来了。白房子比照片里还白，海比照片里还蓝。在这里看了三次日落。",
+   "place": "圣托里尼",
+   "tags": [
+    "旅行",
+    "远方"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/049.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:63",
+   "source": "photos",
+   "date": "2019-02-05",
+   "time": null,
+   "title": "妈妈学会了用咖啡机",
+   "text": "春节回家，带了台咖啡机给爸妈。妈妈研究了一下午，给我做了一杯，说比外面的还好喝。",
+   "place": "老家",
+   "tags": [
+    "家人",
+    "春节"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/063.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:24",
+   "source": "photos",
+   "date": "2019-05-04",
+   "time": null,
+   "title": "读完一本很长的书",
+   "text": "花了三个月，终于读完。最后一页合上的时候，窗外刚好下起了雨。",
+   "place": "家",
+   "tags": [
+    "阅读"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/024.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:40",
+   "source": "photos",
+   "date": "2019-06-30",
+   "time": null,
+   "title": "捡到一只小猫",
+   "text": "下班路上在花坛边听到很小的叫声。抱回家洗干净，是只小花猫，取名叫\"馒头\"。",
+   "place": "小区花坛",
+   "tags": [
+    "馒头",
+    "猫"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/040.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:74",
+   "source": "photos",
+   "date": "2019-09-13",
+   "time": null,
+   "title": "湖上只有一只小船",
+   "text": "中秋夜，湖边人很多，湖上却只有一只小船慢慢划着。想着以后也要这样不慌不忙。",
+   "place": "西湖",
+   "tags": [
+    "中秋",
+    "旅行"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/074.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:56",
+   "source": "photos",
+   "date": "2019-12-31",
+   "time": null,
+   "title": "跨年夜的灯",
+   "text": "人挤人的跨年夜。倒数的时候，旁边陌生的女孩对我说了句新年快乐。",
+   "place": "外滩",
+   "tags": [
+    "跨年"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/056.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:43",
+   "source": "photos",
+   "date": "2020-02-14",
+   "time": null,
+   "title": "想念外面的城市",
+   "text": "居家的第二十天。翻到以前拍的城市夜景，原来能随便出门是一件这么好的事。",
+   "place": "家里窗边",
+   "tags": [
+    "居家"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/043.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:39",
+   "source": "photos",
+   "date": "2020-04-18",
+   "time": null,
+   "title": "把旧唱片听了一遍",
+   "text": "把所有唱片都翻出来听了一遍。馒头趴在唱片机旁边，跟着转盘转头。",
+   "place": "家",
+   "tags": [
+    "音乐",
+    "馒头"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/039.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:37",
+   "source": "photos",
+   "date": "2020-08-22",
+   "time": null,
+   "title": "终于可以出门了",
+   "text": "半年来第一次出远门。站在海边深呼吸，觉得空气都是甜的。",
+   "place": "舟山",
+   "tags": [
+    "海",
+    "旅行"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/037.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:26",
+   "source": "photos",
+   "date": "2020-10-25",
+   "time": null,
+   "title": "翻出大学时的耳机",
+   "text": "大扫除，翻出一抽屉旧东西：大学时的耳机、坏掉的手表、一张电影票根。都没舍得扔。",
+   "place": "家",
+   "tags": [
+    "旧物"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/026.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:17",
+   "source": "photos",
+   "date": "2021-03-21",
+   "time": null,
+   "title": "开始晨跑",
+   "text": "给自己定了个小目标：每天早上跑三公里。今天是第一天，跑了一公里半。",
+   "place": "公园小路",
+   "tags": [
+    "运动",
+    "开始"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/017.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:76",
+   "source": "photos",
+   "date": "2021-06-05",
+   "time": null,
+   "title": "山里的小木屋",
+   "text": "和大学室友们在山里住了三天。没有信号，晚上躺在木屋外面数星星，聊到天亮。",
+   "place": "莫干山",
+   "tags": [
+    "朋友",
+    "山"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/076.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:54",
+   "source": "photos",
+   "date": "2021-09-01",
+   "time": null,
+   "title": "换了新工作",
+   "text": "鼓起勇气辞职，换了一份更想做的工作。第一天天气很好，像是个好兆头。",
+   "place": "新公司楼下",
+   "tags": [
+    "工作",
+    "转折"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/054.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:75",
+   "source": "photos",
+   "date": "2021-11-10",
+   "time": null,
+   "title": "朋友的婚礼",
+   "text": "大学最好的朋友结婚了，婚礼办在葡萄园里。她哭了，我也哭了。",
+   "place": "葡萄园",
+   "tags": [
+    "朋友",
+    "婚礼"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/075.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:61",
+   "source": "photos",
+   "date": "2022-01-15",
+   "time": null,
+   "title": "搬家了",
+   "text": "拖着两个行李箱和一只猫，搬到了一座陌生的城市。从飞机上往下看，这里会是我的新家吗？",
+   "place": "新的城市",
+   "tags": [
+    "搬家",
+    "馒头"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/061.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:65",
+   "source": "photos",
+   "date": "2022-05-28",
+   "time": null,
+   "title": "一个很平常的傍晚",
+   "text": "没有发生什么特别的事。只是夕阳很好，风也很好，就想记下来。",
+   "place": "江边",
+   "tags": [
+    "日常"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/065.jpg",
+     "width": 900,
+     "height": 1200
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:66",
+   "source": "photos",
+   "date": "2022-08-08",
+   "time": null,
+   "title": "雨后的田野",
+   "text": "暴雨过后开车去城郊，云压得很低，空气里全是泥土的味道。",
+   "place": "城郊",
+   "tags": [
+    "夏天"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/066.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:88",
+   "source": "photos",
+   "date": "2022-12-03",
+   "time": null,
+   "title": "深夜的车流",
+   "text": "加班到凌晨一点。回家的路上看着窗外的车流，突然很想家。",
+   "place": "高架桥上",
+   "tags": [
+    "工作",
+    "夜晚"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/088.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:82",
+   "source": "photos",
+   "date": "2023-02-18",
+   "time": null,
+   "title": "春天来得特别早",
+   "text": "二月就开花了。馒头趴在窗台上看了一整个下午。",
+   "place": "小区",
+   "tags": [
+    "春天",
+    "馒头"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/082.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:77",
+   "source": "photos",
+   "date": "2023-05-12",
+   "time": null,
+   "title": "第一次一个人旅行",
+   "text": "一个人订票，一个人走栈桥，一个人看日出。原来一个人也可以很好。",
+   "place": "洱海",
+   "tags": [
+    "旅行",
+    "独处"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/077.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:28",
+   "source": "photos",
+   "date": "2023-08-26",
+   "time": null,
+   "title": "徒步十二公里",
+   "text": "脚磨破了两个水泡，但是看到山谷里溪水的那一刻，觉得一切都值得。",
+   "place": "武功山",
+   "tags": [
+    "山",
+    "运动"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/028.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:78",
+   "source": "photos",
+   "date": "2023-11-04",
+   "time": null,
+   "title": "老门要拆了",
+   "text": "外婆家的老房子要拆了。这扇门我推开过无数次，最后一次，拍下来留着。",
+   "place": "外婆家",
+   "tags": [
+    "家人",
+    "老房子"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/078.jpg",
+     "width": 900,
+     "height": 1200
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:50",
+   "source": "photos",
+   "date": "2024-01-01",
+   "time": null,
+   "title": "三十岁的第一天",
+   "text": "三十岁了。没有想象中的焦虑，反而有点期待。",
+   "place": "海边",
+   "tags": [
+    "生日",
+    "转折"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/050.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:10",
+   "source": "photos",
+   "date": "2024-04-04",
+   "time": null,
+   "title": "湖还是那个湖",
+   "text": "清明回老家。小时候常去的湖还在，岸边的树长高了很多。",
+   "place": "老家 · 湖边",
+   "tags": [
+    "家乡"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/010.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:15",
+   "source": "photos",
+   "date": "2024-07-17",
+   "time": null,
+   "title": "听了一下午瀑布",
+   "text": "什么也不想，坐在瀑布边听了一下午的水声。",
+   "place": "黄山",
+   "tags": [
+    "山",
+    "独处"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/015.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:48",
+   "source": "photos",
+   "date": "2024-10-03",
+   "time": null,
+   "title": "开始写自己的小项目",
+   "text": "国庆哪也没去，开始写一直想做的小项目——一个能存住回忆的网站。",
+   "place": "家",
+   "tags": [
+    "项目",
+    "开始"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/048.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:58",
+   "source": "photos",
+   "date": "2025-03-14",
+   "time": null,
+   "title": "下班路上的灯塔",
+   "text": "今天绕远路回家，看到了海边的灯塔。它每天都在那里，只是我很少停下来看。",
+   "place": "海岸线",
+   "tags": [
+    "日常"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/058.jpg",
+     "width": 900,
+     "height": 1200
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:62",
+   "source": "photos",
+   "date": "2025-06-21",
+   "time": null,
+   "title": "太阳落得很晚",
+   "text": "夏至，一年中白天最长的一天。等到快八点，太阳才慢慢落下去。",
+   "place": "城郊",
+   "tags": [
+    "夏天"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/062.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:84",
+   "source": "photos",
+   "date": "2025-09-02",
+   "time": null,
+   "title": "深夜的大桥",
+   "text": "失眠的夜晚出门散步，走到了江边。桥上的灯一直亮着。",
+   "place": "跨江大桥",
+   "tags": [
+    "夜晚"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/084.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  },
+  {
+   "id": "demo:16",
+   "source": "photos",
+   "date": "2025-11-08",
+   "time": null,
+   "title": "又来看海了",
+   "text": "又来看海了。和九年前第一次看到海的时候一样，风还是咸的。",
+   "place": "海边",
+   "tags": [
+    "海",
+    "旅行"
+   ],
+   "photos": [
+    {
+     "file": "photos/demo/016.jpg",
+     "width": 1200,
+     "height": 900
+    }
+   ],
+   "generated": []
+  }
+ ]
+}
