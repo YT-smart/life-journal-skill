@@ -5,7 +5,8 @@
 数据包结构（网页只读这里）：
     memories/
     ├── memories.json      唯一的数据文件
-    └── photos/<来源>/...   所有照片（qzone / photos / weibo / netdisk / manual …）
+    ├── photos/<来源>/...   所有照片（qzone / photos / weibo / netdisk / manual …）
+    └── thumbs/<来源>/...   网页用的缩略图（保存时自动生成，见 thumbs.py；删掉也会再生成）
 
 所有导入脚本都通过这里读写，保证格式一致。也可以直接在命令行检查数据包：
     python3 memlib.py check --root memories
@@ -45,8 +46,14 @@ def _sort_key(m):
     return (1 if d else 0, d, m.get('time') or '')
 
 
-def save(root, data):
+def save(root, data, thumbs=True):
     os.makedirs(root, exist_ok=True)
+    if thumbs:                                                  # 顺手补齐缩略图（网页加载快很多；见 thumbs.py）
+        try:
+            import thumbs as _thumbs
+            _thumbs.ensure(root, data)
+        except Exception as e:
+            print('THUMBS 0 缩略图生成失败，网页继续用原图：', e, flush=True)
     data['format'], data['version'] = FORMAT, VERSION
     data['updated_at'] = datetime.now().isoformat(timespec='seconds')
     data['memories'].sort(key=_sort_key, reverse=True)          # 最新在前，日期未知的放最后
@@ -259,9 +266,11 @@ def check(root, fix=False):
             p = os.path.join(root, ph['file'])
             if not os.path.exists(p): problems.append(f"缺少文件 {ph['file']}"); continue
             hsh = md5(p)
-            if hsh in KNOWN_PLACEHOLDERS or is_blank(p):
+            if hsh in KNOWN_PLACEHOLDERS or ph.get('blank') or is_blank(p):
                 problems.append(f"空白/占位图 {ph['file']}")
-                if fix: os.remove(p); removed += 1
+                if fix:
+                    os.remove(p); removed += 1
+                    if ph.get('thumb') and ph['thumb'] != ph['file'] and os.path.exists(os.path.join(root, ph['thumb'])): os.remove(os.path.join(root, ph['thumb']))
                 continue
             seen_hash.setdefault(hsh, []).append(m['id']); ok.append(ph)
         if fix: m['photos'] = ok

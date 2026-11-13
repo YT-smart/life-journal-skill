@@ -12,6 +12,7 @@
   share/index.html  flip.mp3  robots.txt
   share/memories/memories.json      清理过的数据（见下）
   share/memories/photos/0001.jpg …  重新编号的照片
+  share/memories/thumbs/0001.jpg …  对应的缩略图（网页先用它，打开得快；同样去掉元数据）
   share/music/…                     背景音乐（默认带上项目里的歌单；--no-music 不带）
 
 为了分享安全，副本和本机项目不同：
@@ -210,6 +211,7 @@ def main():
 
     def build_photos(max_side, quality, report):
         pdir = os.path.join(out, 'memories', 'photos'); shutil.rmtree(pdir, ignore_errors=True); os.makedirs(pdir)
+        tdir = os.path.join(out, 'memories', 'thumbs'); shutil.rmtree(tdir, ignore_errors=True); os.makedirs(tdir)
         tmp = tempfile.mkdtemp(prefix='lj-share-')
         st = {'clean': [], 'n': 0, 'stripped': 0, 'resized': 0, 'texts': 0, 'places': 0, 'yrs': {}}
         try:
@@ -217,7 +219,7 @@ def main():
                 photos = []
                 for ph in m['photos']:
                     src = os.path.join(root, ph['file'])
-                    if not os.path.exists(src) or memlib.is_blank(src): continue
+                    if not os.path.exists(src) or ph.get('blank') or memlib.is_blank(src): continue
                     use = src; small = os.path.join(tmp, 'r' + os.path.splitext(src)[1])
                     if resize(src, small, max_side, quality): use = small; st['resized'] += 1
                     raw = open(use, 'rb').read(); ext = memlib.sniff_ext(raw[:12])
@@ -226,7 +228,16 @@ def main():
                     st['n'] += 1; rel = f'photos/{st["n"]:04d}{ext}'
                     with open(os.path.join(out, 'memories', rel), 'wb') as f: f.write(raw)
                     wh = memlib.image_size(os.path.join(out, 'memories', rel))
-                    photos.append({'file': rel, **({'width': wh[0], 'height': wh[1]} if wh else {})})
+                    entry = {'file': rel, **({'width': wh[0], 'height': wh[1]} if wh else {})}
+                    tsrc = os.path.join(root, ph['thumb']) if ph.get('thumb') and ph['thumb'] != ph['file'] else None
+                    if ph.get('thumb') == ph['file']: entry['thumb'] = rel          # 原图本身就是缩略图
+                    elif tsrc and os.path.exists(tsrc):             # 缩略图同样去元数据（macOS 生成的缩略图会带着原图的 EXIF）
+                        traw = open(tsrc, 'rb').read(); text = memlib.sniff_ext(traw[:12])
+                        if text:
+                            traw, _ = strip_meta(traw, text); trel = f'thumbs/{st["n"]:04d}{text}'
+                            with open(os.path.join(out, 'memories', trel), 'wb') as f: f.write(traw)
+                            entry['thumb'] = trel
+                    photos.append(entry)
                 if not photos: continue
                 c = {'id': f'm{i:04d}', 'source': '' if a.no_source else m.get('source', ''),
                      'date': m.get('date'), 'time': m.get('time'),

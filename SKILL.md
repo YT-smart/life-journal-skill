@@ -102,6 +102,7 @@ python3 $S/scripts/weibo_export.py --root ~/时光手帐/memories --timeout 600
 ```bash
 python3 $S/scripts/memlib.py check --root ~/时光手帐/memories
 ```
+每次保存都会自动生成网页用的缩略图（输出 `THUMBS <新生成> <总数>`；macOS 用 sips，Windows 用 PowerShell，见 `references/data-format.md`）。几百张照片第一次要等几十秒到一两分钟，看到 `THUMBS_PROGRESS` 就告诉用户还在处理。
 `problems` 不为空时：空白/占位图和没有照片的回忆用 `memlib.py clean` 清掉；缺失文件要找原因。把各来源的回忆数、照片数、年份分布、跳过了什么（`SKIPPED` 行）简单告诉用户——**下了 54/57 张就说暂缺 3 张**，不要说成完整备份。
 
 ## 3. 可选：让照片“有话说”
@@ -167,6 +168,7 @@ python3 $S/scripts/serve.py --project ~/时光手帐        # 输出 URL http://
 | 网页空白 / 3D 不出现 | 网页需要联网加载 three.js、gsap 和字体；检查网络 |
 | 翻书没有声音 | 项目里缺 `flip.mp3`：重跑 `new_project.py` 更新网页文件 |
 | 某些照片是空白相框 | `memlib.py clean`；网页本身也会跳过几乎纯色的图 |
+| 照片很多时网页打开慢 | 看 `memories.json` 里的照片有没有 `thumb`；没有就运行 `thumbs.py --root …/memories` 补齐（旧项目、或之前在不支持的系统上导入的）。缩略图生成失败的照片会继续用原图 |
 | 年份里出现“日期未知” | 这些照片没有拍摄时间，正常；用户知道日期可以用 `add_memory.py --id … --date …` 补 |
 | HEIC / RAW 被跳过 | 非 macOS 无法自动转换：请用户在相册里导出为 JPEG |
 | 微博 `需要验证` / 一直失败 | 改用 `weibo_export.py --from-json`，见 `references/sources.md` |

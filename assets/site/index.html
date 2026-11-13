@@ -778,12 +778,18 @@ function hasContent(url){
 }
 let SKIPPED = 0;
 if(USING_DATA){        // safety net: never show a blank / placeholder picture
-  await Promise.all(STORE.memories.map(async mm => {
-    const ok = await Promise.all((mm.photos || []).map(x => hasContent(DATA_ROOT + x.file)));
-    SKIPPED += ok.filter(v => !v).length;
-    mm.photos = (mm.photos || []).filter((_, k) => ok[k]);
-  }));
+  // photos with a thumbnail were already checked when it was made (thumbs.py marks blank ones);
+  // only older packs without thumbnails are probed here, and never for more than a few seconds
+  STORE.memories.forEach(mm => { const n = (mm.photos || []).length; mm.photos = (mm.photos || []).filter(x => !x.blank); SKIPPED += n - mm.photos.length; });
+  const unchecked = STORE.memories.flatMap(mm => (mm.photos || []).filter(x => !x.thumb));
+  if(unchecked.length){
+    const bad = new Set(); let next = 0;
+    const worker = async () => { while(next < unchecked.length){ const x = unchecked[next++]; if(!(await hasContent(DATA_ROOT + x.file))) bad.add(x); } };
+    await Promise.race([Promise.all(Array.from({length:8}, worker)), new Promise(r => setTimeout(r, 3000))]);
+    STORE.memories.forEach(mm => { const n = mm.photos.length; mm.photos = mm.photos.filter(x => !bad.has(x)); SKIPPED += n - mm.photos.length; });
+  }
 }
+const photoUrl = x => DATA_ROOT + (x.thumb || x.file), fullUrl = x => DATA_ROOT + x.file;
 // date may be "YYYY-MM-DD", "YYYY-MM", "YYYY" or null (unknown — never guessed)
 function parseDate(str, time){
   const m = /^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/.exec(str || '');
@@ -799,8 +805,8 @@ if(USING_DATA){
   MEM = list.map(({mm, dt}, i) => {
     const im = mm.photos[0];
     const m = {i, id:mm.id, ...dt, place:mm.place || '', cap:mm.title || shortCap(mm.text), text:mm.text || '', tags:mm.tags || [],
-      portrait:isPortrait(im), url:DATA_ROOT + im.file, source:SOURCE_LABEL[mm.source] ?? (mm.source || '')};
-    mm.photos.slice(1).forEach((x, k) => EXTRA.push({m, k:k + 2, url:DATA_ROOT + x.file, portrait:isPortrait(x)}));
+      portrait:isPortrait(im), url:photoUrl(im), big:fullUrl(im), source:SOURCE_LABEL[mm.source] ?? (mm.source || '')};
+    mm.photos.slice(1).forEach((x, k) => EXTRA.push({m, k:k + 2, url:photoUrl(x), big:fullUrl(x), portrait:isPortrait(x)}));
     return m;
   });
 } else {
@@ -949,7 +955,31 @@ const shadowMat = new THREE.MeshBasicMaterial({map:shadowTex, color:0x7a4326, tr
 const cards = [];
 const NC = new THREE.Vector3(0, 60, 0);     // intro nebula centre (seen from outside)
 const dummy = new THREE.Object3D();
-const loader = new THREE.ImageLoader(); loader.setCrossOrigin('anonymous');
+// photos load a few at a time, newest first (cards are created in that order), each decoded off the main thread
+// before it is painted, so hundreds of pictures never stall the page
+const loadQueue = []; let loading = 0;
+function pumpLoads(){
+  while(loading < 6 && loadQueue.length){
+    const c = loadQueue.shift(); loading++;
+    const img = new Image(); img.crossOrigin = 'anonymous'; img.decoding = 'async';
+    const done = () => { loading--; pumpLoads(); };
+    // decode() can stall while the tab is in the background: never let it hold up the queue
+    img.onload = () => Promise.race([img.decode ? img.decode() : null, new Promise(r => setTimeout(r, 1500))].filter(Boolean)).catch(() => {}).then(() => { c.img = img; drawCard(c); done(); });
+    img.onerror = done;
+    img.src = c.thumbUrl;
+  }
+}
+// one shared box per card shape; the four thin edges are drawn as one group (3 draw calls per card instead of 6)
+const cardGeos = new Map();
+function cardGeo(w, h){
+  const k = w.toFixed(3) + 'x' + h.toFixed(3);
+  if(!cardGeos.has(k)){
+    const g = new THREE.BoxGeometry(w, h, .035); g.clearGroups();
+    g.addGroup(0, 24, 0); g.addGroup(24, 6, 1); g.addGroup(30, 6, 2); g.computeBoundingBox();
+    cardGeos.set(k, g);
+  }
+  return cardGeos.get(k);
+}
 function makeCard({m=null, url, bigUrl, portrait, year, texW, extra=null}){
   const age = year ? .04 + (NEWEST - year)/YEAR_SPAN*.9 : .9;
   const L = cardLayout(texW, portrait);
@@ -957,22 +987,21 @@ function makeCard({m=null, url, bigUrl, portrait, year, texW, extra=null}){
   const tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
   const front = new THREE.MeshStandardMaterial({map:tex, roughness:.55, metalness:0, emissive:0xffffff, emissiveMap:tex, emissiveIntensity:isLight ? .2 : .06});
   const worldW = portrait ? 2.3 : 2.9, h = worldW * L.H / L.W;
-  const mesh = new THREE.Mesh(new THREE.BoxGeometry(worldW, h, .035), [edgeMat,edgeMat,edgeMat,edgeMat,front,backMat]);
+  const mesh = new THREE.Mesh(cardGeo(worldW, h), [edgeMat,front,backMat]);
   const c = {mesh, front, m, extra, portrait, year, age, L, ctx:cv.getContext('2d'), tex, img:null, bigUrl: bigUrl || url, thumbUrl: url,
     anchor:new THREE.Vector3(), quat:new THREE.Quaternion(), scale:0.001,
     hover:0, fw:0, hl:0, dim:1, phase:rand()*6.28, spin:.15+rand()*.35, fs:.5+rand()*.6, fa:.04+rand()*.06, boom:0};
-  mesh.geometry.computeBoundingBox();
   const sh = new THREE.Mesh(shadowGeo, shadowMat); sh.scale.set(worldW*1.36, h*1.36, 1); sh.position.set(.05, -.12, -.05); sh.visible = isLight; sh.renderOrder = -1;
   mesh.add(sh); c.shadow = sh;
   mesh.userData.c = c;
   drawCard(c);
-  loader.load(c.thumbUrl, img => { c.img = img; drawCard(c); }, undefined, () => {});
+  loadQueue.push(c); pumpLoads();
   scene.add(mesh); cards.push(c);
   return c;
 }
 const memCard = new Map();
-MEM.forEach(m => memCard.set(m, makeCard({m, url:m.url, portrait:m.portrait, year:m.y, texW: MEM.length > 150 ? 384 : MEM.length > 60 ? 448 : 512})));
-if(USING_DATA) EXTRA.forEach(e => makeCard({url:e.url, portrait:e.portrait, year:e.m.y, texW:300, extra:e}));
+MEM.forEach(m => memCard.set(m, makeCard({m, url:m.url, bigUrl:m.big, portrait:m.portrait, year:m.y, texW: MEM.length > 300 ? 320 : MEM.length > 150 ? 384 : MEM.length > 60 ? 448 : 512})));
+if(USING_DATA) EXTRA.forEach(e => makeCard({url:e.url, bigUrl:e.big, portrait:e.portrait, year:e.m.y, texW: cards.length > 300 ? 256 : 300, extra:e}));
 else { let fi = 0; YEARS.forEach(y => { for(let q=0;q<8;q++){ const id = FILLER_IDS[fi++ % FILLER_IDS.length], pt = rand() < .3;
   makeCard({url:pt ? `https://picsum.photos/id/${id}/200/267` : `https://picsum.photos/id/${id}/200/150`, bigUrl:pt ? `https://picsum.photos/id/${id}/600/800` : `https://picsum.photos/id/${id}/800/600`, portrait:pt, year:y, texW:200}); } }); }
 

@@ -7,12 +7,13 @@
 ├── index.html  flip.mp3
 ├── memories/
 │   ├── memories.json          ← 唯一的数据文件
-│   └── photos/                ← 所有照片
-│       ├── qzone/             ← QQ 空间
-│       ├── weibo/             ← 微博
-│       ├── netdisk/           ← 网盘
-│       ├── photos/            ← 电脑 / 手机相册
-│       └── manual/            ← 对话里直接给的图
+│   ├── photos/                ← 所有照片
+│   │   ├── qzone/             ← QQ 空间
+│   │   ├── weibo/             ← 微博
+│   │   ├── netdisk/           ← 网盘
+│   │   ├── photos/            ← 电脑 / 手机相册
+│   │   └── manual/            ← 对话里直接给的图
+│   └── thumbs/                ← 网页用的缩略图（长边 640，和 photos/ 同样的子目录；保存时自动生成，删了会再生成）
 ├── music/
 │   ├── playlist.json
 │   └── track-01.mp3 …
@@ -60,7 +61,7 @@
 | `text` | 否 | 正文，照片背面显示的文字。用户自己写过的原文原样保留。 |
 | `place` | 否 | 地点，没有就留空。 |
 | `tags` | 否 | 标签数组。 |
-| `photos` | 是 | 至少一张。`file` 是**相对 `memories/` 的路径**；`width` / `height` 可选（判断横竖构图）。`preview: true` 表示这张是网盘缩略图而非原图（之后拿到原图可重新导入替换）。第一张是封面，其余挂在它旁边。 |
+| `photos` | 是 | 至少一张。`file` 是**相对 `memories/` 的路径**；`width` / `height` 可选（判断横竖构图）。`preview: true` 表示这张是网盘缩略图而非原图（之后拿到原图可重新导入替换）。`thumb` / `blank` 由 `memlib.save` 自动写入（见下文“缩略图”），不用手写。第一张是封面，其余挂在它旁边。 |
 | `generated` | 否 | 哪些字段是 AI 写的，例如 `["title", "tags"]`。重新导入时，用户补写过的字段不会被空值覆盖。 |
 
 照片格式：JPEG / PNG / GIF / WebP（浏览器能直接显示的）。HEIC、RAW、TIFF 需要先导出成 JPEG。
@@ -81,6 +82,15 @@
 - `memlib.py clean --root <项目>/memories` —— 清理：删除空白 / 占位图，去掉因此没有照片的回忆
 
 每种来源怎么接、能做到什么，见 `sources.md`。
+
+## 缩略图
+
+几百张照片时，网页如果直接加载原图（每张几 MB）会非常慢。所以 `memlib.save` 每次保存时会调用 `thumbs.py`，给还没有缩略图的照片生成一张长边 640 的 JPEG（几十 KB），写进照片的 `thumb` 字段：
+
+- 3D 照片球、螺旋塔、答案之书都用缩略图，点开大图时才加载原图。
+- 生成时顺便检查 JPEG 是不是几乎纯色的空白图，是的话标 `"blank": true`，网页不显示，`memlib.py clean` 会删掉。
+- macOS 用系统自带的 `sips`；Windows 用系统自带的 PowerShell（System.Drawing），不用另外安装。其他系统不生成，网页继续用原图（能用，只是慢）。
+- 旧项目没有缩略图：运行一次 `python3 $S/scripts/thumbs.py --root ~/时光手帐/memories` 补齐。
 
 ## 手写或从其他来源转换
 
